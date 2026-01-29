@@ -1,0 +1,22 @@
+# 抖音小程序开发
+.DS_Store
+node_modules/
+dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+
+# Claude AI
+.claude/
+
+# 临时文件
+*.log
+*.tmp
+.cache/
+
+# 系统文件
+Thumbs.db

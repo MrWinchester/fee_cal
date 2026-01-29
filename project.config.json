@@ -1,0 +1,29 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "fee_calculator",
+  "description": "费用计算器",
+  "appid": "tt68fc1e41f69f5b3e01",
+  "libVersion": "3.0.0",
+  "ttPlugins": {},
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "compileHotReLoad": false,
+    "postcss": true,
+    "minified": false,
+    "coverView": true,
+    "lazyCodeLoading": "requiredComponents",
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "compileType": "miniprogram",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "condition": {},
+  "scripts": {}
+}

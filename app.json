@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/calculator/calculator",
+    "pages/login/login",
+    "pages/admin/admin"
+  ],
+  "window": {
+    "navigationBarTitleText": "费用计算器",
+    "navigationBarBackgroundColor": "#2c3e50",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#3498db",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/calculator/calculator",
+        "text": "费用计算",
+        "iconPath": "images/tabbar/calculator.png",
+        "selectedIconPath": "images/tabbar/calculator-active.png"
+      },
+      {
+        "pagePath": "pages/admin/admin",
+        "text": "后台管理",
+        "iconPath": "images/tabbar/admin.png",
+        "selectedIconPath": "images/tabbar/admin-active.png"
+      }
+    ]
+  }
+}

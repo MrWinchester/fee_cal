@@ -1,0 +1,60 @@
+<!-- pages/admin/admin.ttml -->
+<view class="container">
+  <!-- 未登录提示界面 -->
+  <view class="login-required" tt:if="{{!isLoggedIn}}">
+    <image class="login-required-icon" src="/images/tabbar/admin.png" mode="aspectFit"></image>
+    <view class="login-required-title">需要登录</view>
+    <view class="login-required-desc">请先登录后再管理价格配置</view>
+    <button class="btn btn-primary mt-30" bindtap="goToLogin">
+      前往登录
+    </button>
+  </view>
+
+  <!-- 已登录管理界面 -->
+  <view tt:if="{{isLoggedIn}}">
+    <!-- 头部信息 -->
+    <view class="admin-header">
+      <view class="header-title">价格配置管理</view>
+      <view class="header-subtitle">点击价格项进行修改</view>
+    </view>
+
+    <!-- 价格列表 -->
+    <view class="price-list">
+      <view
+        class="price-item"
+        tt:for="{{priceList}}"
+        tt:key="key"
+        data-key="{{item.key}}"
+        bindtap="onEditPrice"
+      >
+        <view class="price-item-left">
+          <view class="price-item-name">{{item.name}}</view>
+          <view class="price-item-unit">单位: {{item.unit}}</view>
+        </view>
+
+        <view class="price-item-right">
+          <view class="price-item-value">¥{{item.price}}</view>
+          <view class="price-item-action">修改</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <button class="btn btn-secondary" bindtap="onResetPrices">
+        重置为默认价格
+      </button>
+
+      <button class="btn btn-danger mt-20" bindtap="onLogout">
+        退出登录
+      </button>
+    </view>
+
+    <!-- 提示信息 -->
+    <view class="admin-tips">
+      <text class="tip-item">· 修改后的价格将立即生效</text>
+      <text class="tip-item">· 价格数据保存在本地存储中</text>
+      <text class="tip-item">· 可随时重置为默认价格</text>
+    </view>
+  </view>
+</view>

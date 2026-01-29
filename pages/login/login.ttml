@@ -1,0 +1,51 @@
+<!-- pages/login/login.ttml -->
+<view class="login-container">
+  <view class="login-card">
+    <!-- Logo区域 -->
+    <view class="logo-section">
+      <image class="logo-icon" src="/images/tabbar/admin-active.png" mode="aspectFit"></image>
+      <view class="logo-title">后台管理</view>
+      <view class="logo-subtitle">费用计算器</view>
+    </view>
+
+    <!-- 登录表单 -->
+    <view class="login-form">
+      <view class="form-item">
+        <view class="form-label">
+          <text>账号</text>
+        </view>
+        <input
+          class="form-input"
+          type="text"
+          value="{{username}}"
+          bindinput="onUsernameInput"
+          placeholder="请输入账号"
+          placeholder-class="input-placeholder"
+        />
+      </view>
+
+      <view class="form-item">
+        <view class="form-label">
+          <text>密码</text>
+        </view>
+        <input
+          class="form-input"
+          type="password"
+          password="{{true}}"
+          value="{{password}}"
+          bindinput="onPasswordInput"
+          placeholder="请输入密码"
+          placeholder-class="input-placeholder"
+        />
+      </view>
+
+      <button class="btn btn-primary mt-30" bindtap="onLogin">
+        登录
+      </button>
+
+      <button class="btn btn-secondary mt-20" bindtap="onBackHome">
+        返回首页
+      </button>
+    </view>
+  </view>
+</view>

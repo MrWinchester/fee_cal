@@ -1,0 +1,158 @@
+<!-- pages/calculator/calculator.ttml -->
+<view class="container">
+  <!-- 基础尺寸输入区 -->
+  <view class="card">
+    <view class="section-title">基础尺寸</view>
+
+    <view class="input-row">
+      <text class="input-label">长度</text>
+      <input
+        class="input-field"
+        type="digit"
+        value="{{dimensions.length}}"
+        data-field="length"
+        bindinput="onDimensionInput"
+        placeholder="请输入长度"
+      />
+      <text class="input-unit">米</text>
+    </view>
+
+    <view class="input-row">
+      <text class="input-label">宽度</text>
+      <input
+        class="input-field"
+        type="digit"
+        value="{{dimensions.width}}"
+        data-field="width"
+        bindinput="onDimensionInput"
+        placeholder="请输入宽度"
+      />
+      <text class="input-unit">米</text>
+    </view>
+
+    <!-- 面积显示 -->
+    <view class="area-display" tt:if="{{area > 0}}">
+      <text class="area-label">面积:</text>
+      <text class="area-value">{{areaFixed}} 平米</text>
+    </view>
+  </view>
+
+  <!-- 费用项目输入区 -->
+  <view class="card" tt:if="{{prices.cutting}}">
+    <view class="section-title">费用项目</view>
+
+    <!-- 切割费（按面积） -->
+    <view class="input-row area-based" tt:if="{{area > 0}}">
+      <text class="input-label">{{prices.cutting.name}}</text>
+      <text class="auto-calculated">自动计算</text>
+      <text class="input-unit">{{areaFixed}} {{prices.cutting.unit}}</text>
+    </view>
+
+    <!-- 加工费（按项） -->
+    <view class="input-row">
+      <text class="input-label">{{prices.processing.name}}</text>
+      <input
+        class="input-field"
+        type="digit"
+        value="{{inputs.processing}}"
+        data-key="processing"
+        bindinput="onItemInput"
+        placeholder="请输入项数"
+      />
+      <text class="input-unit">{{prices.processing.unit}}</text>
+    </view>
+
+    <!-- 打包费（按次） -->
+    <view class="input-row">
+      <text class="input-label">{{prices.packing.name}}</text>
+      <input
+        class="input-field"
+        type="digit"
+        value="{{inputs.packing}}"
+        data-key="packing"
+        bindinput="onItemInput"
+        placeholder="请输入次数"
+      />
+      <text class="input-unit">{{prices.packing.unit}}</text>
+    </view>
+
+    <!-- 运费（按公里） -->
+    <view class="input-row">
+      <text class="input-label">{{prices.shipping.name}}</text>
+      <input
+        class="input-field"
+        type="digit"
+        value="{{inputs.shipping}}"
+        data-key="shipping"
+        bindinput="onItemInput"
+        placeholder="请输入公里数"
+      />
+      <text class="input-unit">{{prices.shipping.unit}}</text>
+    </view>
+
+    <!-- 卸货搬运（按次） -->
+    <view class="input-row">
+      <text class="input-label">{{prices.unloading.name}}</text>
+      <input
+        class="input-field"
+        type="digit"
+        value="{{inputs.unloading}}"
+        data-key="unloading"
+        bindinput="onItemInput"
+        placeholder="请输入次数"
+      />
+      <text class="input-unit">{{prices.unloading.unit}}</text>
+    </view>
+
+    <!-- 安装（按面积） -->
+    <view class="input-row area-based" tt:if="{{area > 0}}">
+      <text class="input-label">{{prices.installation.name}}</text>
+      <text class="auto-calculated">自动计算</text>
+      <text class="input-unit">{{areaFixed}} {{prices.installation.unit}}</text>
+    </view>
+
+    <!-- 灯带（按面积） -->
+    <view class="input-row area-based" tt:if="{{area > 0}}">
+      <text class="input-label">{{prices.ledStrip.name}}</text>
+      <text class="auto-calculated">自动计算</text>
+      <text class="input-unit">{{areaFixed}} {{prices.ledStrip.unit}}</text>
+    </view>
+
+    <!-- 其他（直接金额） -->
+    <view class="input-row">
+      <text class="input-label">{{prices.other.name}}</text>
+      <input
+        class="input-field"
+        type="digit"
+        value="{{inputs.other}}"
+        data-key="other"
+        bindinput="onItemInput"
+        placeholder="请输入金额"
+      />
+      <text class="input-unit">{{prices.other.unit}}</text>
+    </view>
+  </view>
+
+  <!-- 费用明细 -->
+  <view class="card" tt:if="{{feeDetails.length > 0}}">
+    <view class="section-title">费用明细</view>
+
+    <view class="fee-item" tt:for="{{feeDetails}}" tt:key="key">
+      <view class="fee-item-row">
+        <text class="fee-item-name">{{item.name}}</text>
+        <text class="fee-item-detail" tt:if="{{item.type !== 'direct'}}">{{item.quantityFixed}}{{item.unit}} × ¥{{item.unitPrice}}</text>
+        <text class="fee-item-detail" tt:if="{{item.type === 'direct'}}">直接费用</text>
+        <text class="fee-item-price">¥{{item.totalPriceFixed}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 总计 -->
+  <view class="total-card">
+    <view class="total-label">总计</view>
+    <view class="total-amount">¥{{totalFeeFixed || '0.00'}}</view>
+  </view>
+
+  <!-- 重置按钮 -->
+  <button class="btn btn-secondary mt-20" bindtap="onReset">重置</button>
+</view>
